@@ -33,9 +33,9 @@ pipeline{
              }
         }
 
-         stage('Build'){
+         stage('Deploy'){
              steps{
-                 sh './mvnw spring-boot:run -Dserver.port=5001'
+                 sh './mvnw spring-boot:run'
              }
         }
 
