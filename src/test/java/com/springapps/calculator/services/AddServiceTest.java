@@ -18,4 +18,17 @@ public class AddServiceTest {
         Assertions.assertEquals(result.getResult(), 30);
 
     }
+
+    @Test
+    public void addIntegerFail(){
+        //Given
+        AddService service = new AddService();
+
+        //When
+        Result result = service.add(10,10);
+
+        //then
+        Assertions.assertEquals(result.getResult(), 30);
+
+    }
 }
