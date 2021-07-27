@@ -1,36 +1,37 @@
+//Declarative
 pipeline{
-    agent any
-
+    //agent any
+    agent { docker {image 'maven:3.8.1'} }
     stages{
-            stage('Build'){
+        stage('Build'){
+            stage{
                 steps{
-                    git 'https://github.com/kathirvelarun/spring-apps.git'
-                    sh './mvnw clean compile'
+                    echo "Build"
                 }
-           }
+            }
 
-           stage('Test'){
-               steps{
-                   sh './mvnw test'
-               }
+            stage('Test'){
+                steps{
+                    echo "Test"
+                }
+            }
 
-               post {
-                    always {
-                        junit '**/target/surefire-reports/TEST-*.xml'
-                    }
-               }
-          }
+            stage('Integration Test'){
+                steps{
+                    echo "Integration Test"
+                }
+            }
+    }
 
-         stage('Publish'){
-             steps{
-                 sh './mvnw package'
-             }
-
-             post {
-                  success {
-                      archiveArtifacts 'target/*.jar'
-                  }
-             }
+    post{
+        always {
+            echo "Always execute CI CD"
+        }
+        success {
+            echo "Now my app is running fine"
+        }
+        failure {
+            echo "My App is not running fine now"
         }
 
     }
