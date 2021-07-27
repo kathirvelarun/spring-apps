@@ -9,8 +9,8 @@ pipeline {
       steps {
         echo 'Build'
         echo '$PATH'
-        echo 'BUILD NUMBER - $env.BUILD_NUMBER'
-        echo 'BUILD_ID - $env.BUILD_ID'
+        echo "BUILD_NUMBER - $env.BUILD_NUMBER"
+        echo "BUILD_ID - $env.BUILD_ID"
       }
     }
 
