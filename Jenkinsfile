@@ -20,6 +20,7 @@ pipeline {
         echo 'Build'
         echo '$PATH'
         echo "BUILD_NUMBER - $env.BUILD_NUMBER"
+        echo "BUILD_TAG - $env.BUILD_TAG"
         echo "BUILD_ID - $env.BUILD_ID"
         echo "JAVA_HOME - ${env.JAVA_HOME}"
       }
@@ -41,7 +42,34 @@ pipeline {
           steps {
             sh "mvn failsafe:integration-test failsafe:verify"
           }
-        }
+    }
+
+    stage('Package') {
+      steps {
+        sh "mvn package -DskipTests"
+      }
+    }
+
+    stage('Build Docker Image') {
+          steps {
+            script {
+                dockerImage = docker.build("kathirvelarun/spring-boot-apps:${env.BUILD_TAG}")
+            }
+          }
+    }
+
+    stage('Push Docker Image') {
+          steps {
+            script {
+                docker.withRegistry('','dockerHub') {
+                    dockerImage = docker.push();
+                    dockerImage = docker.push('latest');
+                }
+            }
+          }
+    }
+
+
   }
 
   post {
