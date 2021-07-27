@@ -6,7 +6,7 @@ pipeline {
   environment {
     dockerHome = tool 'myDocker'
     mavenHome = tool 'myMaven'
-    javaHome = tool 'myJava'
+    javaHome = tool 'Java11'
     PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
   }
 
