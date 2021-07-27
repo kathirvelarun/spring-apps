@@ -6,6 +6,7 @@ pipeline {
   environment {
     dockerHome = tool 'myDocker'
     mavenHome = tool 'myMaven'
+    javaHome = tool 'myJava'
     PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
   }
 
@@ -15,6 +16,7 @@ pipeline {
       steps {
         sh 'mvn --version'
         sh 'docker version'
+        sh 'java -version'
         echo 'Build'
         echo '$PATH'
         echo "BUILD_NUMBER - $env.BUILD_NUMBER"
