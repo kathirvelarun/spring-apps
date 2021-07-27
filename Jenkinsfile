@@ -7,37 +7,36 @@ pipeline {
     }
   }
   stages {
+
     stage('Build') {
-      stage {
-        steps {
-          sh './mvnw test'
-          echo 'Build'
-        }
-      }
-
-      stage('Test') {
-        steps {
-          echo "Test"
-        }
-      }
-
-      stage('Integration Test') {
-        steps {
-          echo "Integration Test"
-        }
+      steps {
+        sh './mvnw test'
+        echo 'Build'
       }
     }
 
-    post {
-      always {
-        echo "Always execute CI CD"
+    stage('Test') {
+      steps {
+        echo "Test"
       }
-      success {
-        echo "Now my app is running fine"
+    }
+
+    stage('Integration Test') {
+      steps {
+        echo "Integration Test"
       }
-      failure {
-        echo "My App is not running fine now"
-      }
+    }
+  }
+
+  post {
+    always {
+      echo "Always execute CI CD"
+    }
+    success {
+      echo "Now my app is running fine"
+    }
+    failure {
+      echo "My App is not running fine now"
     }
   }
 }
