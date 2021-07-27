@@ -1,15 +1,16 @@
 //Declarative
 pipeline {
-  //agent any
 
-  agent { docker { image 'maven:3.6.3'} }
+  agent any
 
   stages {
 
     stage('Build') {
       steps {
-        sh './mvnw test'
         echo 'Build'
+        echo '$PATH'
+        echo 'BUILD NUMBER - $env.BUILD_NUMBER'
+        echo 'BUILD_ID - $env.BUILD_ID'
       }
     }
 
