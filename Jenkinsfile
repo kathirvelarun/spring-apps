@@ -63,7 +63,7 @@ pipeline {
             script {
                 docker.withRegistry('','dockerHub') {
                     dockerImage.push();
-                    dockerImage.push('latest');
+                    //dockerImage.push('latest');
                 }
             }
           }
