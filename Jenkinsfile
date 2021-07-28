@@ -18,7 +18,6 @@ pipeline {
         sh 'mvn --version'
         sh 'docker version'
         sh 'java -version'
-        echo 'Build'
         echo "BUILD_NUMBER - $env.BUILD_NUMBER"
         echo "BUILD_TAG - $env.BUILD_TAG"
         echo "BUILD_ID - $env.BUILD_ID"
